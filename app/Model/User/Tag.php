@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Model\User;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Tag extends Model
+{
+    protected $guarded = []; 
+
+    public function posts() {
+
+    	return $this->belongsToMany('App\Model\User\Post', 'post_tags')->orderBy('created_at', 'DESC')->paginate('3');
+
+    }
+
+    public function getRouteKeyName() {
+
+    	return 'slug';
+    }
+}
